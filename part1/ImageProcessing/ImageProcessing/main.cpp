@@ -13,6 +13,18 @@ const char *attributeLocations[] = { "Position", "Tex" };
 
 GLuint passthroughProgram;
 GLuint boxBlurProgram;
+//==================================
+GLuint imageNegativeProgram;
+GLuint gaussianBlurProgram;
+GLuint grayScaleFSProgram;
+GLuint edgeDetectionProgram;
+GLuint toonShadingProgram;
+
+GLuint pixelateProgram;
+GLuint brightnessProgram;
+GLuint nightVisionProgram;
+GLuint constractProgram;
+//==================================
 
 GLuint initShader(const char *vertexShaderPath, const char *fragmentShaderPath)
 {
@@ -36,7 +48,8 @@ GLuint initShader(const char *vertexShaderPath, const char *fragmentShaderPath)
 
 void initTextures()
 {
-	GLuint image = SOIL_load_OGL_texture("Valve.png", 3, 0, 0);
+	//GLuint image = SOIL_load_OGL_texture("Valve.png", 3, 0, 0);
+	GLuint image = SOIL_load_OGL_texture("pic.jpg", 3, 0, 0);
 	glBindTexture(GL_TEXTURE_2D, image);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -104,6 +117,34 @@ void keyboard(unsigned char key, int x, int y)
 	   case '2':
            glUseProgram(boxBlurProgram);
 		   break;
+		//================================================
+	   case '3':
+		   glUseProgram(imageNegativeProgram);
+		   break;
+	   case '4':
+		   glUseProgram(gaussianBlurProgram);
+		   break;
+	   case '5':
+		   glUseProgram(grayScaleFSProgram);
+		   break;
+	   case '6':
+		   glUseProgram(edgeDetectionProgram);
+		   break;
+	   case '7':
+		   glUseProgram(toonShadingProgram);
+		   break;
+	   case '8':
+		   glUseProgram(pixelateProgram);
+		   break;
+	   case '9':
+		   glUseProgram(brightnessProgram);
+		   break;
+	   case 'n':
+		   glUseProgram(nightVisionProgram);
+		   break;	
+	   case 'c':
+		   glUseProgram(constractProgram);
+		   break;
 	}
 }
 
@@ -133,7 +174,18 @@ int main(int argc, char* argv[])
     initTextures();
 	passthroughProgram = initShader("passthroughVS.glsl", "passthroughFS.glsl");
 	boxBlurProgram = initShader("passthroughVS.glsl", "boxBlurFS.glsl");
-
+	//===========================================================================
+	imageNegativeProgram = initShader("passthroughVS.glsl", "hy_imageNegative.glsl");
+	gaussianBlurProgram = initShader("passthroughVS.glsl", "hy_gaussianBlur.glsl");
+	grayScaleFSProgram = initShader("passthroughVS.glsl", "hy_grayScale.glsl");
+	edgeDetectionProgram = initShader("passthroughVS.glsl", "hy_edgeDetection.glsl");
+	toonShadingProgram = initShader("passthroughVS.glsl", "hy_toonShading.glsl");
+	
+	pixelateProgram = initShader("passthroughVS.glsl", "hy_pixelate.glsl");
+	brightnessProgram = initShader("passthroughVS.glsl", "hy_brightness.glsl");
+	nightVisionProgram = initShader("passthroughVS.glsl", "hy_nightVision.glsl");
+	constractProgram = initShader("passthroughVS.glsl", "hy_contrast.glsl");
+	//===========================================================================
 	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);	
     glutKeyboardFunc(keyboard);

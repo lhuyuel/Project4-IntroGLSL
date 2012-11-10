@@ -12,6 +12,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="boxBlurFS.glsl" />
+    <None Include="hy_brightness.glsl" />
+    <None Include="hy_contrast.glsl" />
+    <None Include="hy_edgeDetection.glsl" />
+    <None Include="hy_gaussianBlur.glsl" />
+    <None Include="hy_grayScale.glsl" />
+    <None Include="hy_imageNegative.glsl" />
+    <None Include="hy_nightVision.glsl" />
+    <None Include="hy_pixelate.glsl" />
+    <None Include="hy_toonShading.glsl" />
     <None Include="passthroughFS.glsl" />
     <None Include="passthroughVS.glsl" />
   </ItemGroup>
